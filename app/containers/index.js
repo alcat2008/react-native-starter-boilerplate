@@ -1,21 +1,9 @@
 import React from 'react';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
-const logger = createLogger({
-  duration: true
-});
-
-import reducers from '../reducers';
-
-const middleware = [thunk, logger];
-const store = compose(
-  applyMiddleware(...middleware)
-)(createStore)(reducers);
-
+import configureStore from '../store/configureStore';
 
 import Application from './app';
+const store = configureStore();
 
 const AppContainer = () => (
   <Provider store={store}>

@@ -16,6 +16,9 @@ import {
   // ActionConst
 } from 'react-native-router-flux';
 
+// Actions
+import rootActions from '../actions';
+
 // Containers
 import Start from './start';
 import TabOne from './tabone';
@@ -84,13 +87,14 @@ class Application extends Component {
             // eslint-disable-next-line no-confusing-arrow
             selector={props => props.authentication.data.authenticated ? 'tabbar' : 'start'}
           >
-            <Scene key="start" component={Start} hideNavBar={true} sceneStyle={styles.sceneStyle} />
+            <Scene key="start" title="starter" component={Start} hideNavBar={true} sceneStyle={styles.sceneStyle} />
             <Scene
               key="tabbar"
               tabs={true}
               tabBarStyle={styles.tabBarStyle}
             >
               <Scene
+                // initial={true}
                 key="tabone"
                 title="Tab 1"
                 titleTab="Tab 1"
@@ -98,9 +102,24 @@ class Application extends Component {
                 icon={TabIcon}
                 component={TabOne}
                 sceneStyle={styles.sceneDefault}
-              />
+              >
+                <Scene
+                  key="tab2_1"
+                  component={TabOne}
+                  title="Tab #2_1"
+                />
+                <Scene
+                  key="tab2_2"
+                  component={TabOne}
+                  title="Tab #2_2"
+                  hideBackImage={true}
+                  onBack={() => alert('Left button!')}
+                  backTitle="Left"
+                  duration={1}
+                  panHandlers={null}
+                />
+              </Scene>
               <Scene
-                initial={true}
                 key="tabtwo"
                 title="Tab 2"
                 titleTab="Tab 2"
@@ -126,7 +145,7 @@ const mapStateToProps = state => ({
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...routerActions, // eslint-disable-line no-undef
+    ...rootActions, // eslint-disable-line no-undef
   }, dispatch),
   dispatch,
 });

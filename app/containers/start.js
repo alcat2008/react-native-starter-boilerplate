@@ -23,7 +23,7 @@ class Start extends Component {
     return (
       <View>
         <Text>
-          Home screen called {this.props.routes.scene.title}
+          Home screen called {this.props.title}
         </Text>
         <Text onPress={this._onPressButton.bind(this)} >
             Login

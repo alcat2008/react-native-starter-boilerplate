@@ -9,13 +9,14 @@ import rootReducer from '../reducers';
 const loggerMiddleware = createLogger({ duration: true });
 const middleware = [thunkMiddleware, promiseMiddleware, loggerMiddleware];
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState, onComplete: ?() => void) {
   const finalCreateStore = compose(
     applyMiddleware(...middleware),
     devTools({ realtime: true })
   )(createStore);
 
   const store = finalCreateStore(rootReducer, initialState);
+  onComplete && onComplete();
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

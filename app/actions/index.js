@@ -22,10 +22,12 @@ export const authenticationFailed = (data: Object): Object => {
 
 export const fetchAuthentication = () => (dispatch) => {
   dispatch(authenticationStarted());
-  return setTimeout(() => {
-    const data = {
-      authenticated: true
-    };
-    dispatch(authenticationSuccess(data));
-  }, 3000);
+  dispatch(new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+    setTimeout(() => {
+      const data = {
+        authenticated: true
+      };
+      resolve(dispatch(authenticationSuccess(data)));
+    }, 3000);
+  }));
 };

@@ -85,7 +85,7 @@ class Application extends Component {
             }))(Switch)}
             tabs={true}
             // eslint-disable-next-line no-confusing-arrow
-            selector={props => props.authentication.data.authenticated ? 'tabbar' : 'start'}
+            selector={props => props.authentication.authenticated ? 'tabbar' : 'start'}
           >
             <Scene key="start" title="starter" component={Start} hideNavBar={true} sceneStyle={styles.sceneStyle} />
             <Scene

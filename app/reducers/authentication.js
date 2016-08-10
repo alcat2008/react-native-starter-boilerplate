@@ -1,36 +1,31 @@
 import * as types from '../actions/actiontypes';
 
+import { handleActions } from 'redux-actions';
+
 const initialState = {
   isFetching: false,
-  data: {
-    authenticated: false,
-  },
+  authenticated: false,
 };
 
-export default function authentication(state = initialState, action = {}) {
-  switch (action.type) {
-
-    case types.AUTHENTICATION_STARTED:
-      return {
-        ...state,
-        isFetching: true,
-      };
-
-    case types.AUTHENTICATION_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        data: action.data
-      };
-
-    case types.AUTHENTICATION_FAILED:
-      return {
-        ...state,
-        isFetching: false,
-        data: action.data
-      };
-
-    default:
-      return state;
-  }
-}
+export default handleActions({
+  [types.AUTHENTICATION_STARTED]: (state, action) => { // eslint-disable-line  no-unused-vars
+    return {
+      ...state,
+      isFetching: true,
+    };
+  },
+  [types.AUTHENTICATION_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      isFetching: false,
+      authenticated: action.payload.authenticated,
+    };
+  },
+  [types.AUTHENTICATION_FAILED]: (state, action) => {
+    return {
+      ...state,
+      isFetching: false,
+      authenticated: action.payload.authenticated,
+    };
+  },
+}, initialState);

@@ -1,7 +1,6 @@
 /* eslint-disable arrow-body-style */
 
 import * as types from '../actions/types';
-
 import { handleActions } from 'redux-actions';
 
 const initialState = {

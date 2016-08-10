@@ -20,6 +20,7 @@ import {
 import rootActions from '../actions';
 
 // Containers
+import Login from './Login';
 import Start from './Start';
 import TabOne from './TabOne';
 
@@ -85,11 +86,17 @@ class Application extends Component {
             }))(Switch)}
             tabs={true}
             // eslint-disable-next-line no-confusing-arrow
-            selector={props => props.authentication.authenticated ? 'tabbar' : 'start'}
+            selector={props => props.authentication.authenticated ? 'TabBar' : 'Login'}
           >
-            <Scene key="start" title="starter" component={Start} hideNavBar={true} sceneStyle={styles.sceneStyle} />
             <Scene
-              key="tabbar"
+              key="Login"
+              title="Login"
+              component={Start}
+              hideNavBar={true}
+              sceneStyle={styles.sceneStyle}
+            />
+            <Scene
+              key="TabBar"
               tabs={true}
               tabBarStyle={styles.tabBarStyle}
             >

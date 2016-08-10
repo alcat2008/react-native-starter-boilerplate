@@ -21,7 +21,7 @@ import rootActions from '../actions';
 
 // Containers
 import Login from './Login';
-import Start from './Start';
+// import Start from './Start';
 import TabOne from './TabOne';
 
 // Components
@@ -91,7 +91,7 @@ class Application extends Component {
             <Scene
               key="Login"
               title="Login"
-              component={Start}
+              component={Login}
               hideNavBar={true}
               sceneStyle={styles.sceneStyle}
             />

@@ -14,8 +14,8 @@ import Application from './App';
 
 const setup = () => {
   const device = {
-    width: Device.deviceWidth,
-    height: Device.deviceHeight,
+    width: Device.width,
+    height: Device.height,
     statusBarHeight: Device.statusBarHeight,
     innerStatusBarSize: Device.innerStatusBarSize,
     navBarHeight: Device.navBarHeight,
@@ -23,32 +23,19 @@ const setup = () => {
 
   class AppContainer extends React.Component {
     componentWillMount() {
-      // const store = configureStore({}, () => {
-      //   setTimeout(() => {
-      //     this.setState({ isLoading: false });
-      //   }, 2000);
-      // });
+      const store = configureStore({}, () => {
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 2000);
+      });
 
       // store.dispatch(setPlatform());
-      // store.dispatch(setLayout(device));
+      store.dispatch(setLayout(device));
 
-      // this.setState({
-      //   isLoading: true,
-      //   store: configureStore({}, () => {
-      //     setTimeout(() => {
-      //       this.setState({ isLoading: false });
-      //     }, 2000);
-      //   }),
-      // });
-
-      this.state = {
+      this.setState({
         isLoading: true,
-        store: configureStore({}, () => {
-          setTimeout(() => {
-            this.setState({ isLoading: false });
-          }, 2000);
-        }),
-      };
+        store,
+      });
     }
 
     render() {

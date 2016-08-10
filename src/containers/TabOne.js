@@ -15,7 +15,7 @@ class TabOne extends Component {
       <Text>
         The current scene is titled {this.props.title}
       </Text>
-      );
+    );
   }
 }
 

@@ -6,7 +6,7 @@ import {
 import { Provider } from 'react-redux';
 import configureStore from '../store/configureStore';
 
-import Application from './app';
+import Application from './App';
 
 const setup = () => {
   class AppContainer extends React.Component {

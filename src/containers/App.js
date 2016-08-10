@@ -20,11 +20,11 @@ import {
 import rootActions from '../actions';
 
 // Containers
-import Start from './start';
-import TabOne from './tabone';
+import Start from './Start';
+import TabOne from './TabOne';
 
 // Components
-import TabIcon from '../components/tabicon';
+import TabIcon from '../components/TabIcon';
 
 const styles = {
   sceneStyle: {
@@ -132,7 +132,7 @@ class Application extends Component {
           </Scene>
         </Scene>
       </Router>
-      );
+    );
   }
 }
 

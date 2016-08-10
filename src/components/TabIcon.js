@@ -44,6 +44,6 @@ export default class TabIcon extends Component {
         </Text>
       </View>
 
-      );
+    );
   }
 }

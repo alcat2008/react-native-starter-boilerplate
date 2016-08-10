@@ -26,10 +26,10 @@ class Start extends Component {
           Home screen called {this.props.title}
         </Text>
         <Text onPress={this._onPressButton.bind(this)} >
-            Login
+          Login
         </Text>
       </View>
-      );
+    );
   }
 }
 

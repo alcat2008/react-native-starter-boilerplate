@@ -11,9 +11,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isMobile } from '../utils/validator';
 
+import * as authActions  from '../actions/auth';
 import loginStyle from '../styles/login';
-
-import { fetchAuthentication } from '../actions/auth';
 
 class Login extends Component {
 
@@ -37,8 +36,10 @@ class Login extends Component {
     if (!isMobile(this.state.phone)) {
       Alert('请输入11位数字的手机号码');
     } else {
-      const { dispatch } = this.props;
-      dispatch(fetchAuthentication());
+      // const { dispatch } = this.props;
+      // dispatch(fetchAuthentication());
+
+      this.props.actions.fetchAuthentication(this.state.phone);
     }
   };
 
@@ -80,10 +81,10 @@ const mapStateToProps = state => ({
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...rootActions, // eslint-disable-line no-undef
-  }),
+    ...authActions, // eslint-disable-line no-undef
+  }, dispatch),
   dispatch,
 });
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Application);
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,6 +1,7 @@
 import * as types from './types';
 
 import { createAction } from 'redux-actions';
+import { fetchStart, fetchEnd, setSession } from './global';
 
 // export const authenticationStarted = (): Object => {
 //   return {
@@ -26,15 +27,26 @@ export const authenticationSuccess = createAction(types.AUTHENTICATION_SUCCESS);
 export const authenticationFailed = createAction(types.AUTHENTICATION_FAILED);
 
 
-export const fetchAuthentication = () => (dispatch) => {
-  dispatch(authenticationStarted());
-  dispatch(authenticationSuccess(new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+export const fetchAuthentication = (phone) => dispatch => {
+  dispatch(fetchStart());
+  return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
     setTimeout(() => {
       resolve({
-        authenticated: true
+        token: phone + '_ti',
       });
     }, 3000);
-  })));
+  })
+  .then(response => {
+    return dispatch(setSession(response));
+  })
+  .then(() => {
+    dispatch(fetchEnd());
+    dispatch(authenticationSuccess({ authenticated: true }));
+  })
+  .catch(errorData => {
+    dispatch(fetchEnd());
+    dispatch(authenticationFailed(errorData));
+  });
 };
 
 // export const fetchAuthentication = () => async (dispatch) => {

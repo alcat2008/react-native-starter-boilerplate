@@ -1,7 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React, { Component } from 'react';
-// import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Loading } from 'mx-artifacts';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,6 +28,7 @@ import TabOne from './TabOne';
 // Components
 import TabIcon from '../components/TabIcon';
 
+import CommonStyle from '../styles/common';
 const styles = {
   sceneStyle: {
     backgroundColor: '#ffffff',
@@ -74,71 +76,77 @@ const getSceneStyle = (props, computedProps) => { // NavigationSceneRendererProp
 class Application extends Component {
   render() {
     return (
-      <Router
-        createReducer={reducerCreate}
-        getSceneStyle={getSceneStyle}
-      >
-        <Scene key="modal" component={Modal} >
-          <Scene
-            key="root"
-            component={connect(state => ({ // eslint-disable-line arrow-body-style
-              authentication: state.authentication
-            }))(Switch)}
-            tabs={true}
-            // eslint-disable-next-line no-confusing-arrow
-            selector={props => props.authentication.authenticated ? 'TabBar' : 'Login'}
-          >
+      <View style={CommonStyle.fullScreen}>
+        <Router
+          createReducer={reducerCreate}
+          getSceneStyle={getSceneStyle}
+        >
+          <Scene key="modal" component={Modal} >
             <Scene
-              key="Login"
-              title="Login"
-              component={Login}
-              hideNavBar={true}
-              sceneStyle={styles.sceneStyle}
-            />
-            <Scene
-              key="TabBar"
+              key="root"
+              component={connect(state => ({ // eslint-disable-line arrow-body-style
+                authentication: state.authentication
+              }))(Switch)}
               tabs={true}
-              tabBarStyle={styles.tabBarStyle}
+              // eslint-disable-next-line no-confusing-arrow
+              selector={props => props.authentication.authenticated ? 'TabBar' : 'Login'}
             >
               <Scene
-                // initial={true}
-                key="tabone"
-                title="Tab 1"
-                titleTab="Tab 1"
-                iconName="ios-book"
-                icon={TabIcon}
-                component={TabOne}
-                sceneStyle={styles.sceneDefault}
+                key="Login"
+                title="Login"
+                component={Login}
+                hideNavBar={true}
+                sceneStyle={styles.sceneStyle}
+              />
+              <Scene
+                key="TabBar"
+                tabs={true}
+                tabBarStyle={styles.tabBarStyle}
               >
                 <Scene
-                  key="tab2_1"
+                  // initial={true}
+                  key="tabone"
+                  title="Tab 1"
+                  titleTab="Tab 1"
+                  iconName="ios-book"
+                  icon={TabIcon}
                   component={TabOne}
-                  title="Tab #2_1"
-                />
+                  sceneStyle={styles.sceneDefault}
+                >
+                  <Scene
+                    key="tab2_1"
+                    component={TabOne}
+                    title="Tab #2_1"
+                  />
+                  <Scene
+                    key="tab2_2"
+                    component={TabOne}
+                    title="Tab #2_2"
+                    hideBackImage={true}
+                    onBack={() => alert('Left button!')}
+                    backTitle="Left"
+                    duration={1}
+                    panHandlers={null}
+                  />
+                </Scene>
                 <Scene
-                  key="tab2_2"
+                  key="tabtwo"
+                  title="Tab 2"
+                  titleTab="Tab 2"
+                  iconName="ios-contacts"
+                  icon={TabIcon}
                   component={TabOne}
-                  title="Tab #2_2"
-                  hideBackImage={true}
-                  onBack={() => alert('Left button!')}
-                  backTitle="Left"
-                  duration={1}
-                  panHandlers={null}
+                  sceneStyle={styles.sceneDefault}
                 />
               </Scene>
-              <Scene
-                key="tabtwo"
-                title="Tab 2"
-                titleTab="Tab 2"
-                iconName="ios-contacts"
-                icon={TabIcon}
-                component={TabOne}
-                sceneStyle={styles.sceneDefault}
-              />
             </Scene>
           </Scene>
-        </Scene>
-      </Router>
+        </Router>
+
+        <Loading
+          isVisible={this.props.global.isFetching}
+        />
+      </View>
     );
   }
 }
@@ -146,7 +154,7 @@ class Application extends Component {
 
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const mapStateToProps = state => ({
-  router: state.router,
+  global: state.global,
 });
 
 // eslint-disable-next-line no-unused-vars, arrow-body-style
@@ -158,4 +166,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Application);
-export default connect()(Application);
+export default connect(mapStateToProps)(Application);

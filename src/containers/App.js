@@ -30,7 +30,7 @@ import TabIcon from '../components/TabIcon';
 const styles = {
   sceneStyle: {
     backgroundColor: '#ffffff',
-    marginTop: 25,
+    // marginTop: 25,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

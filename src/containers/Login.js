@@ -4,26 +4,38 @@ import {
   Text,
   TextInput,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { Button } from 'mx-artifacts';
+import loginStyle from '../styles/login';
+
 class Login extends Component {
 
   render() {
+    const { device } = this.props;
+
     return (
       <View>
-        <Text>登录</Text>
-        <TextInput
-          style={{
-            fontSize: 18,
-            color: '#000000',
-            marginLeft: 9,
-            // width: Device.width * (375 - 80) / 375,
-          }}
-        >
-
-        </TextInput>
+        <Text style={loginStyle.text}>登录页面</Text>
+        <View style={loginStyle.inputContainer}>
+          <Icon name="ios-call" size={30} color="#4F8EF7" style={loginStyle.inputIcon} />
+          <TextInput
+            style={loginStyle.input}
+            autoCapitalize="none"
+            keyboardType="numeric"
+            placeholder="手机号"
+            returnKeyType="go"
+          />
+        </View>
+        <Button
+          { ...loginStyle.btnProps }
+          containerStyle={loginStyle.buttonContainer}
+          // disabled={this.state.disabled}
+          // onPress={() => this.sendSmsCodeToLoginMobile()}
+        >登录</Button>
       </View>
     );
   }

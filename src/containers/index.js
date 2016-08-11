@@ -26,7 +26,7 @@ const setup = () => {
       const store = configureStore({}, () => {
         setTimeout(() => {
           this.setState({ isLoading: false });
-        }, 2000);
+        }, 200);
       });
 
       // store.dispatch(setPlatform());

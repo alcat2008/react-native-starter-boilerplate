@@ -5,14 +5,42 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Alert, Button } from 'mx-artifacts';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { isMobile } from '../utils/validator';
 
-import { Button } from 'mx-artifacts';
 import loginStyle from '../styles/login';
 
+import { fetchAuthentication } from '../actions/auth';
+
 class Login extends Component {
+
+  constructor(props) {
+    super(props);
+    // initial state
+    this.state = {
+      phone: '',
+      disabled: true,
+    };
+  }
+
+  _onChangeText = (text) => {
+    this.setState({
+      phone: text,
+      disabled: text.length === 0,
+    });
+  };
+
+  _onBtnPressed = () => {
+    if (!isMobile(this.state.phone)) {
+      Alert('请输入11位数字的手机号码');
+    } else {
+      const { dispatch } = this.props;
+      dispatch(fetchAuthentication());
+    }
+  };
 
   render() {
     const { device } = this.props;
@@ -25,16 +53,18 @@ class Login extends Component {
           <TextInput
             style={loginStyle.input}
             autoCapitalize="none"
+            autoCorrect={false}
+            maxLength={11}
             keyboardType="numeric"
             placeholder="手机号"
-            returnKeyType="go"
+            onChangeText={this._onChangeText}
           />
         </View>
         <Button
           { ...loginStyle.btnProps }
           containerStyle={loginStyle.buttonContainer}
-          // disabled={this.state.disabled}
-          // onPress={() => this.sendSmsCodeToLoginMobile()}
+          disabled={this.state.disabled}
+          onPress={this._onBtnPressed}
         >登录</Button>
       </View>
     );
@@ -51,7 +81,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...rootActions, // eslint-disable-line no-undef
-  }, dispatch),
+  }),
   dispatch,
 });
 

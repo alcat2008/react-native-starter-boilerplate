@@ -17,7 +17,7 @@ import {
 } from 'react-native-router-flux';
 
 // Actions
-import rootActions from '../actions';
+// import rootActions from '../actions';
 
 // Containers
 import Login from './Login';
@@ -152,7 +152,7 @@ const mapStateToProps = state => ({
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...rootActions, // eslint-disable-line no-undef
+    // ...rootActions, // eslint-disable-line no-undef
   }, dispatch),
   dispatch,
 });

@@ -11,8 +11,8 @@ const PlainStyle = {
   },
 
   colorSet: {
-    btnEnable: '#b3c7f5',
-    btnDisable: '#4b76df',
+    btnEnable: '#4b76df',
+    btnDisable: '#b3c7f5',
   },
 };
 
@@ -77,7 +77,7 @@ const CommonStyle = {
       color: '#ffffff',
     },
     disabledBackgroundColor: PlainStyle.colorSet.btnDisable,
-    enabledBackgroundColor: PlainStyle.colorSet.btnDisable,
+    enabledBackgroundColor: PlainStyle.colorSet.btnEnable,
   }
 };
 

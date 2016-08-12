@@ -34,6 +34,9 @@ export const fetchAuthentication = (phone) => dispatch => {
       resolve({
         token: phone + '_ti',
       });
+      // reject({
+      //   message: 'token 获取失败'
+      // });
     }, 3000);
   })
   .then(response => {
@@ -41,11 +44,12 @@ export const fetchAuthentication = (phone) => dispatch => {
   })
   .then(() => {
     dispatch(fetchEnd());
-    dispatch(authenticationSuccess({ authenticated: true }));
+    dispatch(authenticationSuccess());
   })
   .catch(errorData => {
     dispatch(fetchEnd());
-    dispatch(authenticationFailed(errorData));
+    dispatch(authenticationFailed());
+    throw new Error(errorData.message);
   });
 };
 

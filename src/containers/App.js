@@ -84,12 +84,11 @@ class Application extends Component {
           <Scene key="modal" component={Modal} >
             <Scene
               key="root"
-              component={connect(state => ({ // eslint-disable-line arrow-body-style
-                authentication: state.authentication
-              }))(Switch)}
+              // eslint-disable-next-line arrow-body-style
+              component={connect(state => ({ auth: state.auth }))(Switch)}
               tabs={true}
               // eslint-disable-next-line no-confusing-arrow
-              selector={props => props.authentication.authenticated ? 'TabBar' : 'Login'}
+              selector={props => props.auth.authenticated ? 'TabBar' : 'Login'}
             >
               <Scene
                 key="Login"

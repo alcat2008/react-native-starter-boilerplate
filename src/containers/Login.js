@@ -20,8 +20,8 @@ class Login extends Component {
     super(props);
     // initial state
     this.state = {
-      phone: '',
-      disabled: true,
+      phone: '13567896789',
+      disabled: false,
     };
   }
 
@@ -39,7 +39,9 @@ class Login extends Component {
       // const { dispatch } = this.props;
       // dispatch(fetchAuthentication());
 
-      this.props.actions.fetchAuthentication(this.state.phone);
+      this.props.actions.fetchAuthentication(this.state.phone).catch(errorData => {
+        Alert(errorData.message);
+      });
     }
   };
 
@@ -59,6 +61,7 @@ class Login extends Component {
             keyboardType="numeric"
             placeholder="手机号"
             onChangeText={this._onChangeText}
+            value={this.state.phone}
           />
         </View>
         <Button

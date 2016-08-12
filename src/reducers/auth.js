@@ -8,12 +8,12 @@ const initialState = {
 };
 
 export default handleActions({
-  [types.AUTH_SUCCESS]: (state, action) => ({
+  [types.AUTH_SUCCESS]: (state, action) => ({ // eslint-disable-line no-unused-vars
     ...state,
-    authenticated: action.payload.authenticated,
+    authenticated: true,
   }),
-  [types.AUTH_FAILED]: (state, action) => ({
+  [types.AUTH_FAILED]: (state, action) => ({ // eslint-disable-line no-unused-vars
     ...state,
-    authenticated: action.payload.authenticated,
+    authenticated: false,
   }),
 }, initialState);

@@ -8,11 +8,11 @@ const initialState = {
 };
 
 export default handleActions({
-  [types.AUTHENTICATION_SUCCESS]: (state, action) => ({
+  [types.AUTH_SUCCESS]: (state, action) => ({
     ...state,
     authenticated: action.payload.authenticated,
   }),
-  [types.AUTHENTICATION_FAILED]: (state, action) => ({
+  [types.AUTH_FAILED]: (state, action) => ({
     ...state,
     authenticated: action.payload.authenticated,
   }),

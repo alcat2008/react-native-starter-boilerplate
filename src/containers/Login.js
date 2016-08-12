@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isMobile } from '../utils/validator';
 
-import * as authActions  from '../actions/auth';
+import * as authActions from '../actions/auth';
 import loginStyle from '../styles/login';
 
 class Login extends Component {

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import global from './global';
 import device from './device';
-import authentication from './authentication';
+import authentication from './auth';
 
 export default combineReducers({
   global,

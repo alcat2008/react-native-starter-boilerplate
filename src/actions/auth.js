@@ -5,26 +5,26 @@ import { fetchStart, fetchEnd, setSession } from './global';
 
 // export const authenticationStarted = (): Object => {
 //   return {
-//     type: types.AUTHENTICATION_STARTED
+//     type: types.AUTH_STARTED
 //   };
 // };
-export const authenticationStarted = createAction(types.AUTHENTICATION_STARTED);
+export const authenticationStarted = createAction(types.AUTH_STARTED);
 
 // export const authenticationSuccess = (data: Object): Object => {
 //   return {
-//     type: types.AUTHENTICATION_SUCCESS,
+//     type: types.AUTH_SUCCESS,
 //     data
 //   };
 // };
-export const authenticationSuccess = createAction(types.AUTHENTICATION_SUCCESS);
+export const authenticationSuccess = createAction(types.AUTH_SUCCESS);
 
 // export const authenticationFailed = (data: Object): Object => {
 //   return {
-//     type: types.AUTHENTICATION_FAILED,
+//     type: types.AUTH_FAILED,
 //     data
 //   };
 // };
-export const authenticationFailed = createAction(types.AUTHENTICATION_FAILED);
+export const authenticationFailed = createAction(types.AUTH_FAILED);
 
 
 export const fetchAuthentication = (phone) => dispatch => {

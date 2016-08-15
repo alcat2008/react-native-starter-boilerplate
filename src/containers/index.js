@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { Device } from 'mx-artifacts';
 import configureStore from '../store/configureStore';
 
-import { setPlatform, setLayout } from '../actions/device';
+import { setLayout } from '../actions/device';
 
 import Application from './App';
 
@@ -42,7 +42,7 @@ const setup = () => {
       if (this.state.isLoading) {
         return (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Loading view.</Text>
+            <Text>Loading view ...</Text>
           </View>
         );
       }

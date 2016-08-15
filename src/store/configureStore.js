@@ -6,25 +6,22 @@ import devTools from 'remote-redux-devtools';
 import createLogger from 'redux-logger';
 
 import rootReducer from '../reducers';
-const loggerMiddleware = createLogger({ duration: true });
-const middleware = [thunkMiddleware, promiseMiddleware, loggerMiddleware];
+const middleware = [thunkMiddleware, promiseMiddleware];
 
 export default function configureStore(initialState, onComplete: ?() => void) {
-  const finalCreateStore = compose(
-    applyMiddleware(...middleware),
-    devTools({ realtime: true })
-  )(createStore);
+  let finalCreateStore;
+  if (process.env.NODE_ENV === 'production') {
+    finalCreateStore = applyMiddleware(...middleware)(createStore);
+  } else {
+    const loggerMiddleware = createLogger({ duration: true });
+    finalCreateStore = compose(
+      applyMiddleware(...middleware, loggerMiddleware),
+      devTools({ realtime: true })
+    )(createStore);
+  }
 
   const store = finalCreateStore(rootReducer, initialState);
   onComplete && onComplete();
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers').default; // eslint-disable-line global-require
-      store.replaceReducer(nextReducer);
-    });
-  }
 
   return store;
 }

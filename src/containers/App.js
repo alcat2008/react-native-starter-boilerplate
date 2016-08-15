@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Loading } from 'mx-artifacts';
+import { Alert, Loading } from 'mx-artifacts';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -122,7 +122,7 @@ class Application extends Component {
                     component={TabOne}
                     title="Tab #2_2"
                     hideBackImage={true}
-                    onBack={() => alert('Left button!')}
+                    onBack={() => Alert('Left button!')}
                     backTitle="Left"
                     duration={1}
                     panHandlers={null}

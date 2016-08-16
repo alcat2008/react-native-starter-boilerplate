@@ -23,19 +23,24 @@ const setup = () => {
   };
 
   class AppContainer extends React.Component {
+    constructor(props) {
+      super(props);
+      // initial state
+      this.state = {
+        isLoading: true,
+        store: null,
+      };
+    }
+
     componentWillMount() {
-      const store = configureStore({}, () => {
-        setTimeout(() => {
-          this.setState({ isLoading: false });
-        }, 200);
-      });
+      const store = configureStore({});
 
       // store.dispatch(setPlatform());
       store.dispatch(setLayout(device));
       store.dispatch(initApp());
 
       this.setState({
-        isLoading: true,
+        isLoading: false,
         store,
       });
     }

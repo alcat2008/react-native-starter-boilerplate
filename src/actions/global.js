@@ -1,6 +1,5 @@
 import * as types from './types';
-
-import { getAuth, getToken } from '../persister';
+import * as Persister from '../persister';
 import { setAuth } from './auth';
 
 import { createAction } from 'redux-actions';
@@ -10,12 +9,12 @@ export const fetchEnd = createAction(types.FETCH_END);
 export const setToken = createAction(types.SET_TOKEN);
 
 export const initApp = () => dispatch => {
-  getAuth()
+  Persister.getAuth()
     .then(authenticated => {
       dispatch(setAuth({ authenticated }));
     });
 
-  getToken()
+  Persister.getToken()
     .then(token => {
       dispatch(setToken({ token }));
     });

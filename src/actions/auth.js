@@ -1,33 +1,17 @@
 import * as types from './types';
 
 import { createAction } from 'redux-actions';
-import { fetchStart, fetchEnd, setSession } from './global';
+import { fetchStart, fetchEnd, setToken } from './global';
+import * as Persister from '../persister';
 
-// export const authenticationStarted = (): Object => {
-//   return {
-//     type: types.AUTH_STARTED
-//   };
-// };
-export const authenticationStarted = createAction(types.AUTH_STARTED);
+export const setAuth = createAction(types.SET_AUTH);
 
-// export const authenticationSuccess = (data: Object): Object => {
-//   return {
-//     type: types.AUTH_SUCCESS,
-//     data
-//   };
-// };
-export const authenticationSuccess = createAction(types.AUTH_SUCCESS);
+export const authSuccess = createAction(types.AUTH_SUCCESS);
 
-// export const authenticationFailed = (data: Object): Object => {
-//   return {
-//     type: types.AUTH_FAILED,
-//     data
-//   };
-// };
-export const authenticationFailed = createAction(types.AUTH_FAILED);
+export const authFailed = createAction(types.AUTH_FAILED);
 
 
-export const fetchAuthentication = (phone) => dispatch => {
+export const fetchAuthentication = phone => dispatch => {
   dispatch(fetchStart());
   return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
     setTimeout(() => {
@@ -40,21 +24,23 @@ export const fetchAuthentication = (phone) => dispatch => {
     }, 3000);
   })
   .then(response => {
-    return dispatch(setSession(response));
+    dispatch(fetchEnd());
+    Persister.setToken(response.token);
+    dispatch(setToken(response.token));
   })
   .then(() => {
-    dispatch(fetchEnd());
-    dispatch(authenticationSuccess());
+    Persister.setAuth(true);
+    dispatch(authSuccess());
   })
   .catch(errorData => {
     dispatch(fetchEnd());
-    dispatch(authenticationFailed());
+    dispatch(authFailed());
     throw new Error(errorData.message);
   });
 };
 
 // export const fetchAuthentication = () => async (dispatch) => {
-//   dispatch(authenticationStarted());
+//   dispatch(authStarted());
 //   const payload = await new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
 //     setTimeout(() => {
 //       resolve({
@@ -62,5 +48,5 @@ export const fetchAuthentication = (phone) => dispatch => {
 //       });
 //     }, 3000);
 //   });
-//   dispatch(authenticationSuccess(payload));
+//   dispatch(authSuccess(payload));
 // };

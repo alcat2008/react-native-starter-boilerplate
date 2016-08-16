@@ -8,6 +8,7 @@ import { Device } from 'mx-artifacts';
 import configureStore from '../store/configureStore';
 
 import { setLayout } from '../actions/device';
+import { initApp } from '../actions/global';
 
 import Application from './App';
 
@@ -31,6 +32,7 @@ const setup = () => {
 
       // store.dispatch(setPlatform());
       store.dispatch(setLayout(device));
+      store.dispatch(initApp());
 
       this.setState({
         isLoading: true,

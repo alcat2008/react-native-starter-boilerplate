@@ -8,6 +8,10 @@ const initialState = {
 };
 
 export default handleActions({
+  [types.SET_AUTH]: (state, action) => ({ // eslint-disable-line
+    ...state,
+    authenticated: action.payload.authenticated,
+  }),
   [types.AUTH_SUCCESS]: (state, action) => ({ // eslint-disable-line no-unused-vars
     ...state,
     authenticated: true,

@@ -18,7 +18,7 @@ export default handleActions({
     ...state,
     ...action.payload,
   }),
-  [types.DEVICE_LAYOUT]: (state, action) => ({
+  [types.SET_LAYOUT]: (state, action) => ({
     ...state,
     ...action.payload,
   }),

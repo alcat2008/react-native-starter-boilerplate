@@ -161,7 +161,6 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     // ...rootActions, // eslint-disable-line no-undef
   }, dispatch),
-  dispatch,
 });
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Application);

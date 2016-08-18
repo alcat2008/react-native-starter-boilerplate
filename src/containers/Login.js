@@ -84,9 +84,8 @@ const mapStateToProps = state => ({
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...authActions, // eslint-disable-line no-undef
+    ...authActions,
   }, dispatch),
-  dispatch,
 });
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Application);

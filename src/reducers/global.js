@@ -15,7 +15,7 @@ export default handleActions({
     ...state,
     isFetching: false,
   }),
-  [types.SET_SESSION]: (state, action) => ({
+  [types.SET_TOKEN]: (state, action) => ({
     ...state,
     token: action.payload.token,
   }),

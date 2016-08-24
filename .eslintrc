@@ -32,7 +32,7 @@
     "prefer-template": ["off"],
     "quote-props": ["error", "consistent-as-needed", { "keywords": true }],
     "react/jsx-boolean-value": ["error", "always"],
-    "react/jsx-pascal-case": ["warn", { ignore: ["IM"] }],
-    "react/prop-types": ["warn", { ignore: ["navigator", "global", "children", "style", "param"] }],
+    "react/jsx-pascal-case": ["warn", { ignore: [] }],
+    "react/prop-types": ["warn", { ignore: ["navigator", "global", "children", "style", "param", "actions"] }],
   }
 }

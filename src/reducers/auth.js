@@ -1,23 +1,33 @@
 /* eslint-disable arrow-body-style */
 
 import * as types from '../actions/types';
-import { handleActions } from 'redux-actions';
 
 const initialState = {
   authenticated: false,
 };
 
-export default handleActions({
-  [types.SET_AUTH]: (state, action) => ({ // eslint-disable-line
-    ...state,
-    authenticated: action.payload.authenticated,
-  }),
-  [types.AUTH_SUCCESS]: (state, action) => ({ // eslint-disable-line no-unused-vars
-    ...state,
-    authenticated: true,
-  }),
-  [types.AUTH_FAILED]: (state, action) => ({ // eslint-disable-line no-unused-vars
-    ...state,
-    authenticated: false,
-  }),
-}, initialState);
+export default function auth(state = initialState, action) {
+  switch (action.type) {
+    case types.SET_AUTH:
+      return {
+        ...state,
+        authenticated: action.payload.authenticated,
+      };
+
+    case types.AUTH_SUCCESS:
+      return {
+        ...state,
+        authenticated: true,
+      };
+
+    case types.AUTH_FAILED:
+      return {
+        ...state,
+        authenticated: false,
+      };
+
+    default:
+      return state;
+  }
+}
+

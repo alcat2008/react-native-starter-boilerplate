@@ -10,6 +10,13 @@ export const authSuccess = createAction(types.AUTH_SUCCESS);
 
 export const authFailed = createAction(types.AUTH_FAILED);
 
+export const logout = () => dispatch => {
+  Persister.setAuth(false);
+  dispatch(setAuth(false));
+
+  Persister.setToken('');
+  dispatch(setToken(''));
+};
 
 export const fetchAuthentication = phone => dispatch => {
   dispatch(fetchStart());

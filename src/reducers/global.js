@@ -6,17 +6,25 @@ const initialState = {
   token: '',
 };
 
-export default handleActions({
-  [types.FETCH_START]: (state, action) => ({ // eslint-disable-line  no-unused-vars
-    ...state,
-    isFetching: true,
-  }),
-  [types.FETCH_END]: (state, action) => ({
-    ...state,
-    isFetching: false,
-  }),
-  [types.SET_TOKEN]: (state, action) => ({
-    ...state,
-    token: action.payload.token,
-  }),
-}, initialState);
+export default function global(state = initialState, action) {
+  switch (action.type) {
+    case types.FETCH_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case types.FETCH_END:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case types.SET_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}

@@ -26,7 +26,7 @@ export const getAuth = () => new Promise(resolve => {
 });
 export const setAuth = authenticated => new Promise(resolve => {
   _realm.write(() => {
-    _realm.create(AUTH, { authenticated });
+    _realm.create(AUTH, { id: 1, authenticated }, true);
     resolve();
   });
 });
@@ -43,6 +43,6 @@ export const getToken = () => new Promise(resolve => {
 });
 export const setToken = token => {
   _realm.write(() => {
-    _realm.create(GLOBAL, { token });
+    _realm.create(GLOBAL, { id: 1, token }, true);
   });
 };

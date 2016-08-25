@@ -11,7 +11,7 @@ export default function auth(state = initialState, action) {
     case types.SET_AUTH:
       return {
         ...state,
-        authenticated: action.payload.authenticated,
+        authenticated: action.payload,
       };
 
     case types.AUTH_SUCCESS:

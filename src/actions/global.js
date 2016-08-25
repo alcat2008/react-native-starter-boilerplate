@@ -11,11 +11,11 @@ export const setToken = createAction(types.SET_TOKEN);
 export const initApp = () => dispatch => {
   Persister.getAuth()
     .then(authenticated => {
-      dispatch(setAuth({ authenticated }));
+      dispatch(setAuth(authenticated));
     });
 
   Persister.getToken()
     .then(token => {
-      dispatch(setToken({ token }));
+      dispatch(setToken(token));
     });
 };

@@ -19,6 +19,7 @@ import {
 
 // Actions
 // import rootActions from '../actions';
+import * as authActions from '../actions/auth';
 
 // Containers
 import Login from './Login';
@@ -74,6 +75,13 @@ const getSceneStyle = (props, computedProps) => { // NavigationSceneRendererProp
 };
 
 class Application extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.global.token !== this.props.global.token) {
+      console.log('===> token changed: ' + nextProps.global.token);
+    }
+  }
+
   render() {
     return (
       <View style={CommonStyle.fullScreen}>
@@ -103,37 +111,24 @@ class Application extends Component {
                 tabBarStyle={styles.tabBarStyle}
               >
                 <Scene
-                  // initial={true}
                   key="tabone"
                   title="Tab 1"
                   titleTab="Tab 1"
                   iconName="ios-book"
                   icon={TabIcon}
+                  rightTitle="Logout"
+                  onRight={() => this.props.actions.logout()}
                   component={TabOne}
                   sceneStyle={styles.sceneDefault}
-                >
-                  <Scene
-                    key="tab2_1"
-                    component={TabOne}
-                    title="Tab #2_1"
-                  />
-                  <Scene
-                    key="tab2_2"
-                    component={TabOne}
-                    title="Tab #2_2"
-                    hideBackImage={true}
-                    onBack={() => Alert('Left button!')}
-                    backTitle="Left"
-                    duration={1}
-                    panHandlers={null}
-                  />
-                </Scene>
+                />
                 <Scene
+                  initial={true}
                   key="tabtwo"
                   title="Tab 2"
                   titleTab="Tab 2"
                   iconName="ios-contacts"
                   icon={TabIcon}
+                  hideNavBar={true}
                   component={TabOne}
                   sceneStyle={styles.sceneDefault}
                 />
@@ -160,8 +155,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     // ...rootActions, // eslint-disable-line no-undef
+    ...authActions,
   }, dispatch),
 });
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Application);
-export default connect(mapStateToProps)(Application);
+export default connect(mapStateToProps, mapDispatchToProps)(Application);

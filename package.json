@@ -1,5 +1,5 @@
 {
-  "name": "StarterBoilerplate",
+  "name": "RNStarterBoilerplate",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,40 +12,41 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "lodash": "^4.14.2",
+    "lodash": "^4.16.4",
     "mx-artifacts": "^0.2.9",
-    "react": "15.2.1",
-    "react-native": "^0.30.0",
-    "react-native-button": "^1.6.0",
-    "react-native-router-flux": "^3.32.0",
-    "react-native-vector-icons": "^2.0.3",
+    "react": "15.3.2",
+    "react-native": "0.34.1",
+    "react-native-button": "^1.7.1",
+    "react-native-extra-dimensions-android": "^0.17.0",
+    "react-native-router-flux": "^3.36.0",
+    "react-native-vector-icons": "^2.1.0",
     "react-redux": "^4.4.5",
-    "realm": "^0.14.3",
-    "redux": "^3.5.2",
-    "redux-actions": "^0.10.1",
-    "redux-logger": "^2.6.1",
+    "redux": "^3.6.0",
+    "redux-actions": "^0.12.0",
+    "redux-logger": "^2.7.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "babel-core": "^6.13.2",
-    "babel-eslint": "5.0.0",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-register": "^6.11.6",
-    "eslint": "2.13.1",
-    "eslint-config-airbnb": "9.0.1",
-    "eslint-plugin-babel": "3.2.0",
-    "eslint-plugin-import": "1.8.1",
-    "eslint-plugin-jsx-a11y": "1.4.2",
-    "eslint-plugin-react": "5.1.1",
-    "estraverse-fb": "1.3.1",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "estraverse-fb": "^1.3.1",
     "expect": "^1.20.2",
-    "mocha": "^3.0.2",
-    "precommit-hook-eslint": "3.0.0",
-    "remote-redux-devtools": "^0.4.0"
+    "mocha": "^3.1.2",
+    "precommit-hook-eslint": "^3.0.0",
+    "remote-redux-devtools": "^0.5.0"
   },
   "author": "ge_yangyang@126.com",
   "pre-commit": [
-    "lint"
+    "lint",
+    "test"
   ]
 }

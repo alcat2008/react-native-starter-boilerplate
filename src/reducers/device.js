@@ -1,8 +1,8 @@
 /* eslint-disable arrow-body-style */
 
 import { Dimensions, Platform } from 'react-native';
-import * as types from '../actions/types';
 import { handleActions } from 'redux-actions';
+import * as types from '../actions/types';
 
 const initialState = {
   platform: Platform.OS,

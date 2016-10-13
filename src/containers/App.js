@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Alert, Loading } from 'mx-artifacts';
+import { Loading } from 'mx-artifacts';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -30,6 +30,7 @@ import TabOne from './TabOne';
 import TabIcon from '../components/TabIcon';
 
 import CommonStyle from '../styles/common';
+
 const styles = {
   sceneStyle: {
     backgroundColor: '#ffffff',
@@ -78,7 +79,7 @@ class Application extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.global.token !== this.props.global.token) {
-      console.log('===> token changed: ' + nextProps.global.token);
+      // console.log('===> token changed: ' + nextProps.global.token);
     }
   }
 
@@ -152,7 +153,7 @@ const mapStateToProps = state => ({
 });
 
 // eslint-disable-next-line no-unused-vars, arrow-body-style
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     // ...rootActions, // eslint-disable-line no-undef
     ...authActions,

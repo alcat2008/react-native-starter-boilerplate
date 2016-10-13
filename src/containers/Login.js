@@ -25,7 +25,7 @@ class Login extends Component {
     };
   }
 
-  _onChangeText = (text) => {
+  _onChangeText = text => {
     this.setState({
       phone: text,
       disabled: text.length === 0,
@@ -46,7 +46,7 @@ class Login extends Component {
   };
 
   render() {
-    const { device } = this.props;
+    // const { device } = this.props;
 
     return (
       <View>
@@ -65,7 +65,7 @@ class Login extends Component {
           />
         </View>
         <Button
-          { ...loginStyle.btnProps }
+          {...loginStyle.btnProps}
           containerStyle={loginStyle.buttonContainer}
           disabled={this.state.disabled}
           onPress={this._onBtnPressed}
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
 });
 
 // eslint-disable-next-line no-unused-vars, arrow-body-style
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     ...authActions,
   }, dispatch),

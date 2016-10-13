@@ -1,5 +1,5 @@
 import * as types from '../actions/types';
-import { handleActions } from 'redux-actions';
+// import { handleActions } from 'redux-actions';
 
 const initialState = {
   isFetching: false,

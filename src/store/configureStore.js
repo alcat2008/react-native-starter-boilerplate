@@ -2,10 +2,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
-import devTools from 'remote-redux-devtools';
-import createLogger from 'redux-logger';
 
 import rootReducer from '../reducers';
+
 const middleware = [thunkMiddleware, promiseMiddleware];
 
 export default function configureStore(initialState, onComplete: ?() => void) {
@@ -13,10 +12,14 @@ export default function configureStore(initialState, onComplete: ?() => void) {
   if (process.env.NODE_ENV === 'production') {
     finalCreateStore = applyMiddleware(...middleware)(createStore);
   } else {
+    /* eslint-disable global-require, import/no-extraneous-dependencies */
+    // const devTools = require('remote-redux-devtools');
+    const createLogger = require('redux-logger');
+
     const loggerMiddleware = createLogger({ duration: true });
     finalCreateStore = compose(
       applyMiddleware(...middleware, loggerMiddleware),
-      devTools({ realtime: true })
+      // devTools({ realtime: true })
     )(createStore);
   }
 

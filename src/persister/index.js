@@ -1,22 +1,39 @@
 
-export const getAuth = () => new Promise(resolve => {
-  const auth = [{ id: 1, authenticated: false }];
-  if (auth.length === 0) {
-    resolve(false);
-  } else {
-    resolve(auth[0].authenticated);
-  }
-});
-export const setAuth = authenticated => new Promise(resolve => {
-  resolve();
-});
+import _ from 'lodash';
+import LocalKeyStore from './LocalKeyStore';
 
-export const getToken = () => new Promise(resolve => {
-    const global = [{ id: 1, token: '12312341234_ti' }];
-    if (global.length === 0) {
-      resolve('');
-    } else {
-      resolve(global[0].token);
-    }
-});
-export const setToken = token => {};
+const STORAGE_KEY_GLOBAL = 'global';
+const _global = {
+  authenticated: false,
+  token: '',
+};
+
+export const getAuth = () =>
+  LocalKeyStore.get(STORAGE_KEY_GLOBAL)
+    .then(data => {
+      _.assign(_global, data);
+      return _global.authenticated;
+    });
+
+// eslint-disable-next-line no-unused-vars
+export const setAuth = authenticated => {
+  _.assign(_global, {
+    authenticated
+  });
+  LocalKeyStore.set(STORAGE_KEY_GLOBAL, _global);
+};
+
+export const getToken = () =>
+  LocalKeyStore.get(STORAGE_KEY_GLOBAL)
+    .then(data => {
+      _.assign(_global, data);
+      return _global.token;
+    });
+
+// eslint-disable-next-line no-unused-vars
+export const setToken = token => {
+  _.assign(_global, {
+    token
+  });
+  LocalKeyStore.set(STORAGE_KEY_GLOBAL, _global);
+};

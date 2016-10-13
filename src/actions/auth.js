@@ -1,8 +1,8 @@
-import * as types from './types';
 
 import { createAction } from 'redux-actions';
 import { fetchStart, fetchEnd, setToken } from './global';
 import * as Persister from '../persister';
+import * as types from './types';
 
 export const setAuth = createAction(types.SET_AUTH);
 

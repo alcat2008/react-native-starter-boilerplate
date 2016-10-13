@@ -16,12 +16,14 @@
     "mocha": true
   },
   "rules": {
+    "arrow-parens": ["error", "as-needed"],
     "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
     "comma-dangle": ["warn", "only-multiline"],
     "global-require": ["error"],
     "import/no-unresolved": ["error", { ignore: ['\.img$', '\.png$', 'NativeModules'] }],
     "max-len": ["error", 120, 2],
     "new-cap": ["error", { "capIsNewExceptions": ["Alert"] }],
+    "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
     "no-param-reassign": ["error", { "props": false }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-underscore-dangle": ["off", { "allowAfterThis": true }],
@@ -34,5 +36,6 @@
     "react/jsx-boolean-value": ["error", "always"],
     "react/jsx-pascal-case": ["warn", { ignore: [] }],
     "react/prop-types": ["warn", { ignore: ["navigator", "global", "children", "style", "param", "actions"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   }
 }

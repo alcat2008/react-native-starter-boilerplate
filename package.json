@@ -6,9 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "dev": "JS_DIR=`pwd`; cd node_modules/react-native; npm run start -- --root $JS_DIR  --reset-cache",
     "release": "rm -rf $TMPDIR/react-*; rm ios/main.jsbundle; react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output ios/main.jsbundle --assets-dest ios/",
-    "lint": "eslint ./app",
+    "lint": "eslint ./src",
     "validate": "npm ls",
-    "test": "mocha --compilers js:babel-register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive --bail --harmony-proxies --require test/setup.js",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
@@ -32,6 +32,9 @@
     "babel-eslint": "^7.0.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.5.2",
+    "enzyme": "^2.4.1",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-babel": "^3.3.0",
@@ -42,6 +45,8 @@
     "expect": "^1.20.2",
     "mocha": "^3.1.2",
     "precommit-hook-eslint": "^3.0.0",
+    "react-dom": "^15.3.2",
+    "react-native-mock": "^0.2.7",
     "remote-redux-devtools": "^0.5.0"
   },
   "author": "ge_yangyang@126.com",

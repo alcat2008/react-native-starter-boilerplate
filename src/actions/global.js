@@ -1,8 +1,7 @@
+import { createAction } from 'redux-actions';
 import * as types from './types';
 import * as Persister from '../persister';
 import { setAuth } from './auth';
-
-import { createAction } from 'redux-actions';
 
 export const fetchStart = createAction(types.FETCH_START);
 export const fetchEnd = createAction(types.FETCH_END);
